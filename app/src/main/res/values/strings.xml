@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Gerenciador Financeiro</string>
+    <string name="accounts">Contas</string>
+    <string name="transactions">Transações</string>
+    <string name="statements">Extratos</string>
+    <string name="total">Total</string>
+</resources>
