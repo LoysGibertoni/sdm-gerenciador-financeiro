@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         final ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
         binding.nvNavigation.setOnNavigationItemSelectedListener(this);
+        binding.nvNavigation.setSelectedItemId(R.id.navAccounts);
     }
 
     @Override

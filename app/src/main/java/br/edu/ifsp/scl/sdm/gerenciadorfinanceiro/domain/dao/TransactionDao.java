@@ -1,10 +1,15 @@
 package br.edu.ifsp.scl.sdm.gerenciadorfinanceiro.domain.dao;
 
-import android.arch.persistence.room.*;
+import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Delete;
+import android.arch.persistence.room.Insert;
+import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
 import android.support.annotation.NonNull;
-import br.edu.ifsp.scl.sdm.gerenciadorfinanceiro.domain.model.Transaction;
 
 import java.util.List;
+
+import br.edu.ifsp.scl.sdm.gerenciadorfinanceiro.domain.model.Transaction;
 
 @Dao
 public interface TransactionDao {

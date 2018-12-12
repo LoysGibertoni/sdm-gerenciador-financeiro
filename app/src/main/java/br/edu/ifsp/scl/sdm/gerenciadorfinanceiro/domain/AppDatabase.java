@@ -5,6 +5,7 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 import android.support.annotation.NonNull;
+
 import br.edu.ifsp.scl.sdm.gerenciadorfinanceiro.domain.dao.AccountDao;
 import br.edu.ifsp.scl.sdm.gerenciadorfinanceiro.domain.dao.TransactionDao;
 import br.edu.ifsp.scl.sdm.gerenciadorfinanceiro.domain.model.Account;

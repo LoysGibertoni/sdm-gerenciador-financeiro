@@ -4,4 +4,11 @@
     <string name="transactions">Transações</string>
     <string name="statements">Extratos</string>
     <string name="total">Total</string>
+    <string name="add_account">Adicionar conta</string>
+    <string name="edit_account">Editar conta</string>
+    <string name="description">Descrição</string>
+    <string name="initial_balance">Saldo inicial</string>
+    <string name="save">Salvar</string>
+    <string name="remove">Remover</string>
+    <string name="cancel">Cancelar</string>
 </resources>

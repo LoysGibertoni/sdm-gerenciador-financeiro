@@ -1,5 +1,7 @@
 package br.edu.ifsp.scl.sdm.gerenciadorfinanceiro.presentation.account;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -30,8 +32,36 @@ public class AccountsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        this.bindData();
+        this.bindListeners();
+    }
+
+    private void bindData() {
         mAdapter = new BindableItemAdapter<>(R.layout.item_account);
         mAdapter.setItems(AppDatabase.getInstance().getAccountDao().get());
         mBinding.rvAccounts.setAdapter(mAdapter);
+    }
+
+    private void bindListeners() {
+        mBinding.fabAdd.setOnClickListener(v -> this.startDetailsActivity(null));
+        mAdapter.setOnItemClickListener(this::startDetailsActivity);
+    }
+
+    private void startDetailsActivity(Account account) {
+        final Intent intent = new Intent(getContext(), AccountDetailsActivity.class);
+        if (account != null) {
+            intent.putExtra(AccountDetailsActivity.EXTRA_ACCOUNT, account);
+        }
+        startActivityForResult(intent, AccountDetailsActivity.REQUEST_CODE);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == Activity.RESULT_OK && requestCode == AccountDetailsActivity.REQUEST_CODE) {
+            mAdapter.setItems(AppDatabase.getInstance().getAccountDao().get());
+        }
     }
 }

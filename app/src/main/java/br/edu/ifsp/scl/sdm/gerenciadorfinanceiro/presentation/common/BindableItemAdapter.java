@@ -7,9 +7,10 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import br.edu.ifsp.scl.sdm.gerenciadorfinanceiro.BR;
 
 import java.util.List;
+
+import br.edu.ifsp.scl.sdm.gerenciadorfinanceiro.BR;
 
 /*
  *  Este adapter faz uso do Android Data Binding para preencher suas Views.
