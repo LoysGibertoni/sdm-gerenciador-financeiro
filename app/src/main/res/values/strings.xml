@@ -8,6 +8,7 @@
     <string name="edit_account">Editar conta</string>
     <string name="description">Descrição</string>
     <string name="initial_balance">Saldo inicial</string>
+    <string name="balance">Saldo</string>
     <string name="save">Salvar</string>
     <string name="remove">Remover</string>
     <string name="cancel">Cancelar</string>

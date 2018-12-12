@@ -25,16 +25,23 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        Fragment fragment = null;
         switch (menuItem.getItemId()) {
             case R.id.navAccounts:
-                this.replaceFragment(new AccountsFragment());
-                return true;
+                fragment = new AccountsFragment();
+                break;
             case R.id.navTransactions:
-                return true;
+                break;
             case R.id.navStatements:
-                return true;
+                break;
         }
-        return false;
+
+        if (fragment != null) {
+            this.replaceFragment(fragment);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void replaceFragment(@NonNull Fragment fragment) {

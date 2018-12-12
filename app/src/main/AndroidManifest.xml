@@ -18,7 +18,10 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.account.AccountDetailsActivity" />
+        <activity
+            android:name=".presentation.account.AccountDetailsActivity"
+            android:parentActivityName=".presentation.MainActivity"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

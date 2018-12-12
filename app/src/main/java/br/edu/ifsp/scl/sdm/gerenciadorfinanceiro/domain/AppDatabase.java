@@ -11,7 +11,7 @@ import br.edu.ifsp.scl.sdm.gerenciadorfinanceiro.domain.dao.TransactionDao;
 import br.edu.ifsp.scl.sdm.gerenciadorfinanceiro.domain.model.Account;
 import br.edu.ifsp.scl.sdm.gerenciadorfinanceiro.domain.model.Transaction;
 
-@Database(entities = {Account.class, Transaction.class}, version = 1)
+@Database(entities = {Account.class, Transaction.class}, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static final String NAME = "gf-db";
