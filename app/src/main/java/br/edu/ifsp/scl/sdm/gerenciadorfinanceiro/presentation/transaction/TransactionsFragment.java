@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+
 import br.edu.ifsp.scl.sdm.gerenciadorfinanceiro.R;
 import br.edu.ifsp.scl.sdm.gerenciadorfinanceiro.databinding.FragmentTransactionsBinding;
 import br.edu.ifsp.scl.sdm.gerenciadorfinanceiro.domain.AppDatabase;
@@ -51,6 +53,7 @@ public class TransactionsFragment extends Fragment {
                 .putExtra(TransactionDetailsActivity.EXTRA_TRANSACTION, account), TransactionDetailsActivity.REQUEST_CODE));
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -59,7 +62,10 @@ public class TransactionsFragment extends Fragment {
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == TransactionAddActivity.REQUEST_CODE) {
                 // Adiciona o item ao adapter
-                mAdapter.addItem((Transaction) data.getSerializableExtra(TransactionAddActivity.EXTRA_TRANSACTION));
+                final ArrayList<Transaction> transactions = (ArrayList<Transaction>) data.getSerializableExtra(TransactionAddActivity.EXTRA_TRANSACTIONS);
+                for (final Transaction transaction : transactions) {
+                    mAdapter.addItem(transaction);
+                }
             } else if (requestCode == TransactionDetailsActivity.REQUEST_CODE) {
                 // Remove o item do adapter
                 mAdapter.removeItem((Transaction) data.getSerializableExtra(TransactionDetailsActivity.EXTRA_TRANSACTION));

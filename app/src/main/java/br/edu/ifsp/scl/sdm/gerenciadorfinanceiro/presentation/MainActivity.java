@@ -22,11 +22,13 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         final ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
         binding.nvNavigation.setOnNavigationItemSelectedListener(this);
+        // Mostra, por padrão, as contas
         binding.nvNavigation.setSelectedItemId(R.id.navAccounts);
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        // Cria e exibe o fragment de acordo com o item selecionado
         Fragment fragment = null;
         switch (menuItem.getItemId()) {
             case R.id.navAccounts:
@@ -49,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     }
 
     public void replaceFragment(@NonNull Fragment fragment) {
+        // Realiza a transação de troca de fragments
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.flContent, fragment)
                 .commitAllowingStateLoss();

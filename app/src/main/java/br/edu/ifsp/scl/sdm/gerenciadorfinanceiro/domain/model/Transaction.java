@@ -38,6 +38,15 @@ public class Transaction implements Serializable, Comparable<Transaction> {
     public Transaction() {
     }
 
+    public Transaction(@NonNull Transaction transaction) {
+        this.description = transaction.description;
+        this.value = transaction.value;
+        this.type = transaction.type;
+        this.originAccountId = transaction.originAccountId;
+        this.destinationAccountId = transaction.destinationAccountId;
+        this.date = transaction.date;
+    }
+
     public Account getOriginAccount() {
         if (this.originAccountId != null) {
             return AppDatabase.getInstance().getAccountDao().get(this.originAccountId);

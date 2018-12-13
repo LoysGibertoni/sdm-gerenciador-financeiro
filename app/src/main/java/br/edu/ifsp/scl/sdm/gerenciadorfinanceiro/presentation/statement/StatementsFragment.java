@@ -99,6 +99,7 @@ public class StatementsFragment extends Fragment {
             return;
         }
 
+        // Busca as transações de acordo com o filtro selecionado e preenche o adapter com elas
         final TransactionDao transactionDao = AppDatabase.getInstance().getTransactionDao();
         if (mBinding.rbAccount.isChecked()) {
             final long accountId = ((Account) mBinding.spAccount.getSelectedItem()).id;
@@ -119,6 +120,7 @@ public class StatementsFragment extends Fragment {
     }
 
     private String getDate(@NonNull String formattedDate) {
+        // Converte a data para o mesmo formato que está salva no banco
         final List<String> split = Arrays.asList(formattedDate.split("/"));
         Collections.reverse(split);
         return TextUtils.join("-", split);
