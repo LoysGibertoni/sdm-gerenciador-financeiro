@@ -54,9 +54,10 @@ public class TransactionAddActivity extends AppCompatActivity {
 
     private void setDatePicker() {
         final Calendar calendar = Calendar.getInstance();
-        final DatePickerDialog dialog = new DatePickerDialog(this, (view, year, month, dayOfMonth) ->
-                mBinding.etDate.setText(String.format(Locale.getDefault(), "%04d/%02d/%02d", year, month + 1, dayOfMonth)),
-                calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+        final DatePickerDialog dialog = new DatePickerDialog(this, (view, year, month, dayOfMonth) -> {
+            mBinding.getTransaction().date = String.format(Locale.getDefault(), "%04d-%02d-%02d", year, month + 1, dayOfMonth);
+            mBinding.etDate.setText(mBinding.getTransaction().getFormattedDate());
+        } ,calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
         mBinding.etDate.setOnClickListener(v -> dialog.show());
     }
 

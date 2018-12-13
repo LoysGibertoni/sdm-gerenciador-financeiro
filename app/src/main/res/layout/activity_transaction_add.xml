@@ -183,8 +183,7 @@
                 android:layout_height="wrap_content"
                 android:focusable="false"
                 android:inputType="numberDecimal"
-                android:hint="@string/date"
-                android:text="@={transaction.date}" />
+                android:hint="@string/date" />
 
         </android.support.design.widget.TextInputLayout>
 

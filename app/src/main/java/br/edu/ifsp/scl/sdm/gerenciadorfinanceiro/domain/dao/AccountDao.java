@@ -18,7 +18,7 @@ public interface AccountDao {
             " a.initialBalance as initialBalance," +
             " (a.initialBalance + COALESCE(SUM(CASE WHEN t.destinationAccountId = a.id THEN t.value ELSE NULL END), 0) - COALESCE(SUM(CASE WHEN t.originAccountId = a.id THEN t.value ELSE NULL END), 0)) AS balance" +
             " FROM account a" +
-            " LEFT JOIN `transaction` t ON (a.id = t.originAccountId OR a.id = t.destinationAccountId)" +
+            " LEFT JOIN `transaction` t ON ((a.id = t.originAccountId OR a.id = t.destinationAccountId) AND t.date <= DATE('now'))" +
             " GROUP BY a.id")
     List<Account> get();
 
@@ -27,7 +27,7 @@ public interface AccountDao {
             " a.initialBalance as initialBalance," +
             " (a.initialBalance + COALESCE(SUM(CASE WHEN t.destinationAccountId = a.id THEN t.value ELSE NULL END), 0) - COALESCE(SUM(CASE WHEN t.originAccountId = a.id THEN t.value ELSE NULL END), 0)) AS balance" +
             " FROM account a" +
-            " LEFT JOIN `transaction` t ON (a.id = t.originAccountId OR a.id = t.destinationAccountId)" +
+            " LEFT JOIN `transaction` t ON ((a.id = t.originAccountId OR a.id = t.destinationAccountId) AND t.date <= DATE('now'))" +
             " WHERE a.id = :id")
     Account get(long id);
 

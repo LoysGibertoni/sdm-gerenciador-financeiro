@@ -170,7 +170,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:text="@{transaction.date}"
+            android:text="@{transaction.formattedDate}"
             tools:text="2018/10/02"
             app:layout_constraintTop_toBottomOf="@id/tvDateLabel"
             app:layout_constraintStart_toStartOf="parent"

@@ -4,8 +4,12 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
+import android.text.TextUtils;
 
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 
 import br.edu.ifsp.scl.sdm.gerenciadorfinanceiro.domain.AppDatabase;
@@ -45,6 +49,15 @@ public class Transaction implements Serializable {
             return AppDatabase.getInstance().getAccountDao().get(this.destinationAccountId);
         }
         return null;
+    }
+
+    public String getFormattedDate() {
+        if (this.date == null) {
+            return null;
+        }
+        final List<String> split = Arrays.asList(this.date.split("-"));
+        Collections.reverse(split);
+        return TextUtils.join("/", split);
     }
 
     @Override
