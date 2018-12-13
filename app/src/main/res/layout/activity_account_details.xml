@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".presentation.account.AccountDetailsActivity">
 
     <data>
 
-        <import type="br.edu.ifsp.scl.sdm.gerenciadorfinanceiro.presentation.util.BindingAdapters" />
+        <import type="java.text.NumberFormat" />
 
         <variable
             name="account"
@@ -17,51 +19,75 @@
         android:layout_height="match_parent"
         android:padding="@dimen/margin">
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/tilDescription"
+        <TextView
+            android:id="@+id/tvDescriptionLabel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.Design.Hint"
+            android:text="@string/description"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/tilInitialBalance"
+            app:layout_constraintBottom_toTopOf="@id/tvDescription"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintEnd_toEndOf="parent" />
 
-            <android.support.design.widget.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textCapSentences"
-                android:hint="@string/description"
-                android:text="@={account.description}" />
+        <TextView
+            android:id="@+id/tvDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:text="@{account.description}"
+            tools:text="Banco do Brasil S.A."
+            app:layout_constraintTop_toBottomOf="@id/tvDescriptionLabel"
+            app:layout_constraintBottom_toTopOf="@id/tvInitialBalanceLabel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/tilInitialBalance"
+        <TextView
+            android:id="@+id/tvInitialBalanceLabel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/small_margin"
-            app:layout_constraintTop_toBottomOf="@id/tilDescription"
+            android:textAppearance="@style/TextAppearance.Design.Hint"
+            android:text="@string/initial_balance"
+            app:layout_constraintTop_toBottomOf="@id/tvDescription"
+            app:layout_constraintBottom_toTopOf="@id/tvInitialBalance"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintEnd_toEndOf="parent" />
 
-            <android.support.design.widget.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="numberDecimal|numberSigned"
-                android:hint="@string/initial_balance"
-                android:text="@={account.initialBalance}" />
-
-        </android.support.design.widget.TextInputLayout>
-
-        <Button
-            android:id="@+id/btSave"
+        <TextView
+            android:id="@+id/tvInitialBalance"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/small_margin"
-            android:text="@string/save"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:text="@{NumberFormat.getCurrencyInstance().format(safeUnbox(account.initialBalance))}"
+            tools:text="R$1.425,00"
+            app:layout_constraintTop_toBottomOf="@id/tvInitialBalanceLabel"
+            app:layout_constraintBottom_toTopOf="@id/tvBalanceLabel"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/btRemove" />
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/tvBalanceLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_margin"
+            android:textAppearance="@style/TextAppearance.Design.Hint"
+            android:text="@string/balance"
+            app:layout_constraintTop_toBottomOf="@id/tvInitialBalance"
+            app:layout_constraintBottom_toTopOf="@id/tvBalance"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/tvBalance"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:text="@{NumberFormat.getCurrencyInstance().format(safeUnbox(account.balance))}"
+            tools:text="R$1.425,00"
+            app:layout_constraintTop_toBottomOf="@id/tvBalanceLabel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <Button
             android:id="@+id/btRemove"
@@ -70,7 +96,7 @@
             android:layout_marginStart="@dimen/small_margin"
             android:text="@string/remove"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/btSave"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
     </android.support.constraint.ConstraintLayout>

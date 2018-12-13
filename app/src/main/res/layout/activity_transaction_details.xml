@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".presentation.account.AccountDetailsActivity">
+
+    <data>
+
+        <import type="java.text.NumberFormat" />
+        <import type="android.view.View" />
+
+        <variable
+            name="transaction"
+            type="br.edu.ifsp.scl.sdm.gerenciadorfinanceiro.domain.model.Transaction" />
+
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/margin">
+
+        <TextView
+            android:id="@+id/tvDescriptionLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.Design.Hint"
+            android:text="@string/description"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tvDescription"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/tvDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:text="@{transaction.description}"
+            tools:text="Saque"
+            app:layout_constraintTop_toBottomOf="@id/tvDescriptionLabel"
+            app:layout_constraintBottom_toTopOf="@id/tvOriginAccountLabel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <android.support.constraint.Group
+            android:id="@+id/gpOriginAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{transaction.originAccount == null ? View.GONE : View.VISIBLE}"
+            app:constraint_referenced_ids="tvOriginAccountLabel,tvOriginAccount" />
+
+        <TextView
+            android:id="@+id/tvOriginAccountLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_margin"
+            android:textAppearance="@style/TextAppearance.Design.Hint"
+            android:text="@string/origin_account"
+            app:layout_constraintTop_toBottomOf="@id/tvDescription"
+            app:layout_constraintBottom_toTopOf="@id/tvOriginAccount"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/tvOriginAccount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:text="@{transaction.originAccount.toString()}"
+            tools:text="Banco do Brasil S.A."
+            app:layout_constraintTop_toBottomOf="@id/tvOriginAccountLabel"
+            app:layout_constraintBottom_toTopOf="@id/tvDestinationAccountLabel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <android.support.constraint.Group
+            android:id="@+id/gpDestinationAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{transaction.destinationAccount == null ? View.GONE : View.VISIBLE}"
+            app:constraint_referenced_ids="tvDestinationAccountLabel,tvDestinationAccount" />
+
+        <TextView
+            android:id="@+id/tvDestinationAccountLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_margin"
+            android:textAppearance="@style/TextAppearance.Design.Hint"
+            android:text="@string/destination_account"
+            app:layout_constraintTop_toBottomOf="@id/tvOriginAccount"
+            app:layout_constraintBottom_toTopOf="@id/tvDestinationAccount"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/tvDestinationAccount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:text="@{transaction.destinationAccount.toString()}"
+            tools:text="NuConta"
+            app:layout_constraintTop_toBottomOf="@id/tvDestinationAccountLabel"
+            app:layout_constraintBottom_toTopOf="@id/tvValueLabel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/tvValueLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_margin"
+            android:textAppearance="@style/TextAppearance.Design.Hint"
+            android:text="@string/value"
+            app:layout_constraintTop_toBottomOf="@id/tvDestinationAccount"
+            app:layout_constraintBottom_toTopOf="@id/tvValue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/tvValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:text="@{NumberFormat.getCurrencyInstance().format(safeUnbox(transaction.value))}"
+            tools:text="R$22,50"
+            app:layout_constraintTop_toBottomOf="@id/tvValueLabel"
+            app:layout_constraintBottom_toTopOf="@id/tvTypeLabel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/tvTypeLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_margin"
+            android:textAppearance="@style/TextAppearance.Design.Hint"
+            android:text="@string/type"
+            app:layout_constraintTop_toBottomOf="@id/tvValue"
+            app:layout_constraintBottom_toTopOf="@id/tvType"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/tvType"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:text="@{transaction.type}"
+            tools:text="Alimentação"
+            app:layout_constraintTop_toBottomOf="@id/tvTypeLabel"
+            app:layout_constraintBottom_toTopOf="@id/tvDateLabel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/tvDateLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_margin"
+            android:textAppearance="@style/TextAppearance.Design.Hint"
+            android:text="@string/date"
+            app:layout_constraintTop_toBottomOf="@id/tvType"
+            app:layout_constraintBottom_toTopOf="@id/tvDate"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:text="@{transaction.date}"
+            tools:text="2018/10/02"
+            app:layout_constraintTop_toBottomOf="@id/tvDateLabel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/btRemove"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/small_margin"
+            android:text="@string/remove"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</layout>

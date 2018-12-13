@@ -5,11 +5,39 @@
     <string name="statements">Extratos</string>
     <string name="total">Total</string>
     <string name="add_account">Adicionar conta</string>
-    <string name="edit_account">Editar conta</string>
+    <string name="account_details">Detalhes da conta</string>
+    <string name="add_transaction">Adicionar transação</string>
+    <string name="transaction_details">Detalhes da transação</string>
     <string name="description">Descrição</string>
     <string name="initial_balance">Saldo inicial</string>
     <string name="balance">Saldo</string>
     <string name="save">Salvar</string>
     <string name="remove">Remover</string>
     <string name="cancel">Cancelar</string>
+    <string name="account">Conta</string>
+    <string name="origin_account">Conta de origem</string>
+    <string name="destination_account">Conta de destino</string>
+    <string name="value">Valor</string>
+    <string name="type">Tipo</string>
+    <string name="credit">Crédito</string>
+    <string name="debit">Débito</string>
+    <string name="transfer">Transferência</string>
+    <string name="fill_all_fields">Preencha todos os campos!</string>
+    <string name="date">Data</string>
+    <string name="to">para</string>
+    <string name="value_date">Valor/data</string>
+
+    <string-array name="transaction_types">
+        <item>Alimentação</item>
+        <item>Saúde</item>
+        <item>Transporte</item>
+        <item>Moradia</item>
+        <item>Educação</item>
+        <item>Lazer</item>
+        <item>Tarifas bancárias</item>
+        <item>Luz</item>
+        <item>Água</item>
+        <item>Telefone</item>
+        <item>Outros</item>
+    </string-array>
 </resources>

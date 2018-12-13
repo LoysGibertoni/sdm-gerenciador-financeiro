@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.ifsp.scl.sdm.gerenciadorfinanceiro.BR;
@@ -34,6 +35,23 @@ public class BindableItemAdapter<T> extends RecyclerView.Adapter<BindableItemAda
     public void setItems(List<T> items) {
         mItems = items;
         notifyDataSetChanged();
+    }
+
+    public void addItem(T item) {
+        final int position = this.getItemCount();
+        if (mItems == null) {
+            mItems = new ArrayList<>();
+        }
+        mItems.add(item);
+        notifyItemInserted(position);
+    }
+
+    public void removeItem(T item) {
+        if (mItems != null) {
+            final int position = mItems.indexOf(item);
+            mItems.remove(position);
+            notifyItemRemoved(position);
+        }
     }
 
     public void setOnItemClickListener(OnItemClickListener<T> onItemClickListener) {

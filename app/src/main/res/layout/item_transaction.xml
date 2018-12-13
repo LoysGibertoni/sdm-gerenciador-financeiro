@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="java.text.NumberFormat" />
+        <import type="android.view.View" />
+
+        <variable
+            name="item"
+            type="br.edu.ifsp.scl.sdm.gerenciadorfinanceiro.domain.model.Transaction" />
+
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tvDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/small_margin"
+            android:singleLine="true"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:text="@{item.description}"
+            tools:text="Pagamento do Spotify"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tvOriginAccount"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tvMinus" />
+
+        <TextView
+            android:id="@+id/tvOriginAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            android:text="@{item.originAccount.toString()}"
+            tools:text="Banco do Brasil"
+            app:layout_constraintTop_toBottomOf="@id/tvDescription"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tvTo" />
+
+        <TextView
+            android:id="@+id/tvTo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            android:text="@string/to"
+            android:visibility="@{item.originAccountId == null || item.destinationAccountId == null ? View.GONE : View.VISIBLE}"
+            app:layout_constraintTop_toTopOf="@id/tvOriginAccount"
+            app:layout_constraintBottom_toBottomOf="@id/tvOriginAccount"
+            app:layout_constraintStart_toEndOf="@id/tvOriginAccount"
+            app:layout_constraintEnd_toStartOf="@id/tvDestinationAccount" />
+
+        <TextView
+            android:id="@+id/tvDestinationAccount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            android:text="@{item.destinationAccount.toString()}"
+            tools:text="NuConta"
+            app:layout_constraintTop_toTopOf="@id/tvOriginAccount"
+            app:layout_constraintBottom_toBottomOf="@id/tvOriginAccount"
+            app:layout_constraintStart_toEndOf="@id/tvTo"
+            app:layout_constraintEnd_toStartOf="@id/tvDate" />
+
+        <TextView
+            android:id="@+id/tvMinus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:text="-"
+            android:visibility="@{item.originAccountId == null || item.destinationAccountId != null ? View.GONE : View.VISIBLE}"
+            app:layout_constraintTop_toTopOf="@id/tvValue"
+            app:layout_constraintBottom_toBottomOf="@id/tvValue"
+            app:layout_constraintStart_toEndOf="@id/tvDescription"
+            app:layout_constraintEnd_toStartOf="@id/tvValue"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/tvValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:text="@{NumberFormat.getCurrencyInstance().format(safeUnbox(item.value))}"
+            tools:text="R$50,41"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tvDate"
+            app:layout_constraintStart_toEndOf="@id/tvMinus"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/small_margin"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            android:text="@{item.date}"
+            tools:text="2018/10/08"
+            app:layout_constraintTop_toBottomOf="@id/tvValue"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tvDestinationAccount"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</layout>

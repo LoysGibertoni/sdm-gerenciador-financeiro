@@ -4,7 +4,6 @@ import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
-import android.arch.persistence.room.Update;
 import android.support.annotation.NonNull;
 
 import java.util.List;
@@ -18,11 +17,8 @@ public interface TransactionDao {
     List<Transaction> get();
 
     @Insert
-    void insert(@NonNull Transaction... transactions);
-
-    @Update
-    void update(@NonNull Transaction... transactions);
+    long insert(@NonNull Transaction transactions);
 
     @Delete
-    void delete(@NonNull Transaction... actransactionscount);
+    void delete(@NonNull Transaction transactions);
 }

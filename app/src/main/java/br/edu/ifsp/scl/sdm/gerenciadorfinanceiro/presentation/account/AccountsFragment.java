@@ -33,6 +33,7 @@ public class AccountsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // Atribui os dados necessários e cria os listeners de click
         this.bindData();
         this.bindListeners();
     }
@@ -44,24 +45,25 @@ public class AccountsFragment extends Fragment {
     }
 
     private void bindListeners() {
-        mBinding.fabAdd.setOnClickListener(v -> this.startDetailsActivity(null));
-        mAdapter.setOnItemClickListener(this::startDetailsActivity);
-    }
-
-    private void startDetailsActivity(Account account) {
-        final Intent intent = new Intent(getContext(), AccountDetailsActivity.class);
-        if (account != null) {
-            intent.putExtra(AccountDetailsActivity.EXTRA_ACCOUNT, account);
-        }
-        startActivityForResult(intent, AccountDetailsActivity.REQUEST_CODE);
+        mBinding.fabAdd.setOnClickListener(v -> this.startActivityForResult(new Intent(getContext(), AccountAddActivity.class),
+                AccountAddActivity.REQUEST_CODE));
+        mAdapter.setOnItemClickListener(account -> this.startActivityForResult(new Intent(getContext(), AccountDetailsActivity.class)
+                .putExtra(AccountDetailsActivity.EXTRA_ACCOUNT, account), AccountDetailsActivity.REQUEST_CODE));
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (resultCode == Activity.RESULT_OK && requestCode == AccountDetailsActivity.REQUEST_CODE) {
-            mAdapter.setItems(AppDatabase.getInstance().getAccountDao().get());
+        // Caso receba resultado de alguma das activities iniciadas
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == AccountAddActivity.REQUEST_CODE) {
+                // Adiciona o item ao adapter
+                mAdapter.addItem((Account) data.getSerializableExtra(AccountAddActivity.EXTRA_ACCOUNT));
+            } else if (requestCode == AccountDetailsActivity.REQUEST_CODE) {
+                // Remove o item do adapter
+                mAdapter.removeItem((Account) data.getSerializableExtra(AccountDetailsActivity.EXTRA_ACCOUNT));
+            }
         }
     }
 }

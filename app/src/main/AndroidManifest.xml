@@ -19,9 +19,25 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".presentation.account.AccountDetailsActivity"
+            android:name=".presentation.account.AccountAddActivity"
+            android:label="@string/add_account"
             android:parentActivityName=".presentation.MainActivity"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".presentation.account.AccountDetailsActivity"
+            android:label="@string/account_details"
+            android:parentActivityName=".presentation.MainActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".presentation.transaction.TransactionAddActivity"
+            android:label="@string/add_transaction"
+            android:parentActivityName=".presentation.MainActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".presentation.transaction.TransactionDetailsActivity"
+            android:label="@string/transaction_details"
+            android:parentActivityName=".presentation.MainActivity"
+            android:windowSoftInputMode="adjustPan" />
     </application>
 
 </manifest>
