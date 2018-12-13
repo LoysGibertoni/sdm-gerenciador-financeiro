@@ -4,6 +4,7 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
 import java.io.Serializable;
@@ -23,7 +24,7 @@ import br.edu.ifsp.scl.sdm.gerenciadorfinanceiro.domain.AppDatabase;
         @Index("destinationAccountId")
     }
 )
-public class Transaction implements Serializable {
+public class Transaction implements Serializable, Comparable<Transaction> {
 
     @PrimaryKey(autoGenerate = true)
     public Long id;
@@ -66,5 +67,10 @@ public class Transaction implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         Transaction that = (Transaction) o;
         return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int compareTo(@NonNull Transaction o) {
+        return this.date.compareTo(o.date);
     }
 }

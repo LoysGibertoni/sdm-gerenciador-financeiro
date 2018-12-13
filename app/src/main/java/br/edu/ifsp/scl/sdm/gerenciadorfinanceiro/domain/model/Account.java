@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-public class Account implements Serializable {
+public class Account implements Serializable, Comparable<Account> {
 
     @PrimaryKey(autoGenerate = true)
     public Long id;
@@ -31,5 +31,10 @@ public class Account implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         Account account = (Account) o;
         return Objects.equals(id, account.id);
+    }
+
+    @Override
+    public int compareTo(@NonNull Account o) {
+        return (int) (this.id - o.id);
     }
 }

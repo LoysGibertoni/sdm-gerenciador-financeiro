@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import br.edu.ifsp.scl.sdm.gerenciadorfinanceiro.BR;
@@ -18,7 +19,7 @@ import br.edu.ifsp.scl.sdm.gerenciadorfinanceiro.BR;
  *  Ele recebe o id do layout a ser utilizado para os items e uma lista de items e, então,
  *  atribui à variável "item" das Views o item correspondente. O Android Data Binding se encarrega do resto.
  */
-public class BindableItemAdapter<T> extends RecyclerView.Adapter<BindableItemAdapter.ViewHolder> {
+public class BindableItemAdapter<T extends Comparable<T>> extends RecyclerView.Adapter<BindableItemAdapter.ViewHolder> {
 
     private int mItemLayoutId;
     private List<T> mItems;
@@ -34,6 +35,9 @@ public class BindableItemAdapter<T> extends RecyclerView.Adapter<BindableItemAda
 
     public void setItems(List<T> items) {
         mItems = items;
+        if (mItems != null) {
+            Collections.sort(mItems);
+        }
         notifyDataSetChanged();
     }
 
@@ -43,7 +47,8 @@ public class BindableItemAdapter<T> extends RecyclerView.Adapter<BindableItemAda
             mItems = new ArrayList<>();
         }
         mItems.add(item);
-        notifyItemInserted(position);
+        Collections.sort(mItems);
+        notifyItemInserted(mItems.indexOf(item));
     }
 
     public void removeItem(T item) {

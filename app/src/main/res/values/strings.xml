@@ -26,8 +26,28 @@
     <string name="date">Data</string>
     <string name="to">para</string>
     <string name="value_date">Valor/data</string>
+    <string name="by_account">Por conta</string>
+    <string name="by_transaction_operation">Por natureza da transação</string>
+    <string name="by_transaction_type">Por tipo de transação</string>
+    <string name="apply">Aplicar</string>
+    <string name="from">De</string>
+    <string name="until">Até</string>
 
     <string-array name="transaction_types">
+        <item>Alimentação</item>
+        <item>Saúde</item>
+        <item>Transporte</item>
+        <item>Moradia</item>
+        <item>Educação</item>
+        <item>Lazer</item>
+        <item>Tarifas bancárias</item>
+        <item>Luz</item>
+        <item>Água</item>
+        <item>Telefone</item>
+        <item>Outros</item>
+    </string-array>
+
+    <string-array name="transaction_natures">
         <item>Alimentação</item>
         <item>Saúde</item>
         <item>Transporte</item>

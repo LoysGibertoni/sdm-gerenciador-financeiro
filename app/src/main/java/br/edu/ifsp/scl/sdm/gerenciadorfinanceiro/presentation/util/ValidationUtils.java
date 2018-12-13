@@ -1,5 +1,6 @@
 package br.edu.ifsp.scl.sdm.gerenciadorfinanceiro.presentation.util;
 
+import android.support.design.widget.TextInputLayout;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -12,6 +13,9 @@ public class ValidationUtils {
         for (final View field : fields) {
             if (field.getVisibility() == View.VISIBLE) {
                 if (field instanceof EditText && TextUtils.isEmpty(((EditText) field).getText().toString())) {
+                    return false;
+                } else if (field instanceof TextInputLayout && ((TextInputLayout) field).getEditText() != null
+                        && TextUtils.isEmpty(((TextInputLayout) field).getEditText().getText().toString())) {
                     return false;
                 } else if (field instanceof Spinner && ((Spinner) field).getSelectedItem() == null) {
                     return false;

@@ -32,7 +32,7 @@ public class AccountAddActivity extends AppCompatActivity {
 
     private void save() {
         // Verifica se todos os campos foram preenchidos
-        if (!ValidationUtils.validateRequiredFields(mBinding.etDescription, mBinding.etInitialBalance)) {
+        if (!ValidationUtils.validateRequiredFields(mBinding.tilDescription, mBinding.tilDescription)) {
             Snackbar.make(mBinding.getRoot(), R.string.fill_all_fields, Snackbar.LENGTH_LONG).show();
             return;
         }

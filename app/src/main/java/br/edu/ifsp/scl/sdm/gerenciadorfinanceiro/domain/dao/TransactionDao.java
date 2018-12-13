@@ -16,6 +16,30 @@ public interface TransactionDao {
     @Query("SELECT * FROM `transaction`")
     List<Transaction> get();
 
+    @Query("SELECT * FROM `transaction`" +
+            " WHERE (originAccountId = :accountId OR destinationAccountId = :accountId)" +
+            " AND date >= :fromDate AND date <= :toDate")
+    List<Transaction> get(long accountId, @NonNull String fromDate, @NonNull String toDate);
+
+    @Query("SELECT * FROM `transaction`" +
+            " WHERE originAccountId IS NULL" +
+            " AND destinationAccountId IS NOT NULL")
+    List<Transaction> getCredits();
+
+    @Query("SELECT * FROM `transaction`" +
+            " WHERE originAccountId IS NOT NULL" +
+            " AND destinationAccountId IS NULL")
+    List<Transaction> getDebits();
+
+    @Query("SELECT * FROM `transaction`" +
+            " WHERE originAccountId IS NOT NULL" +
+            " AND destinationAccountId IS NOT NULL")
+    List<Transaction> getTransfers();
+
+    @Query("SELECT * FROM `transaction`" +
+            " WHERE type = :type")
+    List<Transaction> get( @NonNull String type);
+
     @Insert
     long insert(@NonNull Transaction transactions);
 

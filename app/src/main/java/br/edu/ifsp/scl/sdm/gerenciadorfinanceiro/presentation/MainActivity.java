@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import br.edu.ifsp.scl.sdm.gerenciadorfinanceiro.R;
 import br.edu.ifsp.scl.sdm.gerenciadorfinanceiro.databinding.ActivityMainBinding;
 import br.edu.ifsp.scl.sdm.gerenciadorfinanceiro.presentation.account.AccountsFragment;
+import br.edu.ifsp.scl.sdm.gerenciadorfinanceiro.presentation.statement.StatementsFragment;
 import br.edu.ifsp.scl.sdm.gerenciadorfinanceiro.presentation.transaction.TransactionsFragment;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 fragment = new TransactionsFragment();
                 break;
             case R.id.navStatements:
+                fragment = new StatementsFragment();
                 break;
         }
 

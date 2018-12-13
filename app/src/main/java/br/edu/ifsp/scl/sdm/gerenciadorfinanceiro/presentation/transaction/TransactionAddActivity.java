@@ -63,8 +63,8 @@ public class TransactionAddActivity extends AppCompatActivity {
 
     private void save() {
         // Verifica se todos os campos foram preenchidos
-        if (!ValidationUtils.validateRequiredFields(mBinding.rgOperation, mBinding.etDescription, mBinding.spOriginAccount,
-                mBinding.spDestinationAccount, mBinding.etValue, mBinding.spType, mBinding.etDate)) {
+        if (!ValidationUtils.validateRequiredFields(mBinding.rgOperation, mBinding.tilDescription, mBinding.spOriginAccount,
+                mBinding.spDestinationAccount, mBinding.tilValue, mBinding.spType, mBinding.tilDate)) {
             Snackbar.make(mBinding.getRoot(), R.string.fill_all_fields, Snackbar.LENGTH_LONG).show();
             return;
         }
